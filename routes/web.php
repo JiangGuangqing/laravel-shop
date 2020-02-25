@@ -17,7 +17,9 @@ Route::get('/', 'PagesController@root')->name('root');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::redirect('/', '/products')->name('root');
+
+Route::get('products', 'ProductsController@index')->name('products.index');
 
 //auth 中间件代表需要登录，verified中间件代表需要进过邮箱验证
 
