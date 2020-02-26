@@ -22,7 +22,6 @@ Route::redirect('/', '/products')->name('root');
 Route::get('products', 'ProductsController@index')->name('products.index');
 
 
-
 //auth 中间件代表需要登录，verified中间件代表需要进过邮箱验证
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -44,7 +43,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('products/favorites', 'ProductsController@favorites')->name('products.favorites');
 
-    Route::post('cart','CartController@add')->name('cart.add');
+    Route::post('cart', 'CartController@add')->name('cart.add');
+
+    Route::get('cart', 'CartController@index')->name('cart.index');
+
+    Route::delete('cart/{sku}', 'CartController@remove')->name('cart.remove');
 });
 
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
