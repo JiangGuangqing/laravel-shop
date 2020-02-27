@@ -67,6 +67,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::post('orders/{order}/review', 'OrdersController@sendReview')->name('orders.review.store');
 
+    Route::post('orders/{order}/apply_refund', 'OrdersController@applyRefund')->name('orders.apply_refund');
+
 });
 
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
