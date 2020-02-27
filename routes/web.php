@@ -61,6 +61,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
 
+    Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
+
 });
 
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
