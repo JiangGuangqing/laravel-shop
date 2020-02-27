@@ -16,4 +16,6 @@ Route::group([
 
     $router->resource('products', ProductsController::class);
 
+    $router->resource('orders', OrdersController::class);
+
 });
