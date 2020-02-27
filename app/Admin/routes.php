@@ -16,6 +16,8 @@ Route::group([
 
     $router->resource('products', ProductsController::class);
 
-    $router->resource('orders', OrdersController::class);
+    $router->get('orders/{order}','OrdersController@show')->name('admin.orders.show');
+
+    $router->get('orders', 'OrdersController@index')->name('admin.orders.index');
 
 });

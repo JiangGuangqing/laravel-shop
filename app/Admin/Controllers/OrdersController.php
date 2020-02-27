@@ -6,6 +6,7 @@ use App\Models\Order;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
 class OrdersController extends AdminController
@@ -51,5 +52,12 @@ class OrdersController extends AdminController
             });
         });
         return $grid;
+    }
+
+    public function show($id, Content $content)
+    {
+        return $content
+            ->header('查看订单')
+            ->body(view('admin.orders.show', ['order' => Order::find($id)]));
     }
 }
