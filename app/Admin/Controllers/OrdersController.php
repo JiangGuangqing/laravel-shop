@@ -124,6 +124,20 @@ class OrdersController extends AdminController
     {
         switch ($order->payment_method) {
             case 'wechat':
+                $refundNo = Order::getAvailableRefundNo();
+                app('wechat_pay')->refund([
+                    'out_trade_no' => $order->no,
+                    'total_free' => $order->total_amount * 100,
+                    'refun_fedd' => $order->total_amount * 100,
+                    'out_refund_no' => $refundNo,
+                    'notify_url' => route('payment.wechat.refund_notify'),
+                ]);
+
+                $order->update([
+                    'refund_no' => $refundNo,
+                    'refund_status' => Order::REFUND_STATUS_PROCESSING,
+                ]);
+                break;
 
                 break;
             case 'alipay':
